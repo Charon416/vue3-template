@@ -15,6 +15,10 @@ const count = ref(0)
     <el-button type="warning">Warning</el-button>
     <el-button type="danger">Danger</el-button>
   </el-row>
+  <div>
+    <svg-icon name="locale" size="16" />
+  </div>
+
   <div class="text">我是测试scss文本</div>
   <div class="text-blue-600">测试tailwindcss文本</div>
   <div class="pink">粉色</div>
