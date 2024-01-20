@@ -15,6 +15,7 @@ const count = ref(0)
     <el-button type="warning">Warning</el-button>
     <el-button type="danger">Danger</el-button>
   </el-row>
+  <div class="text">我是测试scss文本</div>
   <h1>{{ msg }}</h1>
 
   <div class="card">
@@ -39,8 +40,11 @@ const count = ref(0)
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .read-the-docs {
   color: #888;
+}
+.text {
+  color: red;
 }
 </style>
