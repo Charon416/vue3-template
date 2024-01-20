@@ -16,6 +16,8 @@ const count = ref(0)
     <el-button type="danger">Danger</el-button>
   </el-row>
   <div class="text">我是测试scss文本</div>
+  <div class="text-blue-600">测试tailwindcss文本</div>
+  <div class="pink">粉色</div>
   <h1>{{ msg }}</h1>
 
   <div class="card">
