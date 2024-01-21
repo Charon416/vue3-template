@@ -4,8 +4,7 @@ import { useUserStoreHook } from '@/store/modules/user';
 import { ElMessage, ElMessageBox } from 'element-plus'
 // 创建 axios 实例
 const service = axios.create({
-  // baseURL: import.meta.env.VITE_APP_BASE_API,
-  baseURL: 'http://vapi.youlai.tech/api/v1',
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 50000,
   headers: { 'Content-Type': 'application/json;charset=utf-8' }
 });
@@ -30,7 +29,7 @@ service.interceptors.response.use(
     const { code, msg } = response.data;
     // 登录成功
     if (code === '00000') {
-      return response.data;
+      return response.data.data;
     }
 
     ElMessage.error(msg || '系统出错');
