@@ -5,6 +5,7 @@ import App from './App.vue'
 import { setupAssets, setupCustomComponents } from '@/plugins';
 import { setupStore } from './store'
 import router from './router'
+import "@/permission";
 
 function setupPlugins() {
   // 引入所有样式

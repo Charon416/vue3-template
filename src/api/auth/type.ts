@@ -11,9 +11,17 @@ export interface IPostLogin {
   captchaKey: string; // 验证码key
   captchaCode: string; // 验证码value
 }
-export interface IResPostLoginResult {
+export interface IResPostLogin {
   accessToken?: string; // 访问token
   expires?: number | null; // 过期时间(单位：毫秒)
   refreshToken?: null | string; // 刷新token
   tokenType?: string; // token 类型
+}
+
+export interface IResGetMe {
+  avatar?: string; // 头像
+  nickname?: string; // 用户昵称
+  perms?: string[]; // 用户权限
+  roles?: string[]; // 角色
+  userId?: number; // 用户ID
 }
