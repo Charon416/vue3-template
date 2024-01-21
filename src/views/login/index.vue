@@ -25,7 +25,11 @@
 </template>
 <script setup lang="ts">
   import { ref, reactive, onMounted } from 'vue';
-  import { getAuthCaptcha, postLogin } from '@/api/auth';
+  import router from "@/router";
+  import { getAuthCaptcha } from '@/api/auth';
+  import { useUserStore } from '@/store/modules/user';
+  import { LocationQuery, LocationQueryValue, useRoute } from "vue-router";
+
   let captchaBase64Image = ref(); // 验证码图片Base64字符串
   const loginData = reactive({
     username: 'admin',
@@ -43,9 +47,25 @@
     getCaptcha()
   })
   // 点击登录
+  const route = useRoute();
+  const auth = useUserStore();
   const handleLogin = async () => {
-    const data = await postLogin(loginData)
-    console.log(data);
+    auth.login(loginData).then(() => {
+      const query: LocationQuery = route.query;
+      const redirect = (query.redirect as LocationQueryValue) ?? "/";
+
+      const otherQueryParams = Object.keys(query).reduce(
+        (acc: any, cur: string) => {
+          if (cur !== "redirect") {
+            acc[cur] = query[cur];
+          }
+          return acc;
+        },
+        {}
+      );
+
+      router.push({ path: redirect, query: otherQueryParams });
+    })
   }
 </script>
 
