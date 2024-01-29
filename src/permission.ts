@@ -13,16 +13,13 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start();
   const hasToken = localStorage.getItem("TOKEN");
   if (hasToken) {
-    console.log(to.path);
     if (to.path === "/login") {
       // 如果已登录，跳转首页
       next({ path: "/" });
       NProgress.done();
     } else {
       const userStore = useUserStore();
-      console.log(userStore)
       const hasRoles = userStore.userInfo.roles && userStore.userInfo.roles.length > 0;
-      console.log(hasRoles);
       if (hasRoles) {
         // 未匹配到任何路由，跳转404
         if (to.matched.length === 0) {
@@ -33,11 +30,8 @@ router.beforeEach(async (to, from, next) => {
       } else {
         try {
           const { roles } = await userStore.getUserInfo();
-          console.log('角色', roles);
           if (roles) {
-            console.log('进来了')
             const accessRoutes = await userStore.generateRoutes(roles);
-            // console.log(accessRoutes);
             accessRoutes.forEach((route) => {
               router.addRoute(route);
             });

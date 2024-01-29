@@ -1,7 +1,7 @@
 <template>
-  <div class="app-container">
-    <Sidebar class="sidebar-container" />
-    <div class="main-container">
+  <div class="layout">
+    <Sidebar class="sidebar-layout" />
+    <div class="main-layout">
       <NavBar />
       <TagsView />
       <Main />
@@ -16,13 +16,11 @@ import Main from './components/Main/main.vue'
 </script>
 
 <style lang="scss" scoped>
-.app-container {
+.layout {
+  width: 100%;
+  height: 100%;
   display: flex;
-  .sidebar-container {
-    width: 210px;
-    background-color: #304156;
-  }
-  .main-container {
+  .main-layout {
     flex: 1;
     background-color: #f2f3f5;
   }

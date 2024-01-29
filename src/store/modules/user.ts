@@ -10,7 +10,7 @@ import { constantRoutes } from "@/router";
 interface UserState {
   token: string;
   userInfo: IResGetMe;
-  routes: any;
+  routes: string[];
 }
 
 export const useUserStore = defineStore("user", {
