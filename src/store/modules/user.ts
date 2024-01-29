@@ -8,8 +8,12 @@ import { IPostLogin } from '@/api/auth/type.ts'
 export const useUserStore = defineStore("user", () => {
   /* token */
   const token = ref<string>(getToken() || "" as string);
+  /* 角色 */
   const roles = ref<string[]>([]);
+  /* 名称 */
   const nickname = ref<string>("");
+  /* 头像 */
+  const avatar = ref<string>("")
   // 登录逻辑
   const login = async (loginData: IPostLogin) => {
     const data = await postLogin(loginData);
@@ -23,12 +27,14 @@ export const useUserStore = defineStore("user", () => {
   const getUserInfo = async () => {
     const data = await getMe();
     nickname.value = data.nickname ?? '';
+    avatar.value = data.avatar ?? '';
     roles.value = data.roles ?? [];
   }
   return {
     token,
     roles,
     nickname,
+    avatar,
     login,
     getUserInfo
   }
