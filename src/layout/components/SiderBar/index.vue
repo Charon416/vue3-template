@@ -8,7 +8,7 @@
     :unique-opened="false"
     :collapse-transition="true"
     class="slider-menu"
-    :collapse="app.isOpen"
+    :collapse="!app.isOpen"
   >
     <Logo />
     <menu-item
@@ -59,10 +59,4 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.slider-menu {
-  height: 100%;
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 210px;
-}
 </style>

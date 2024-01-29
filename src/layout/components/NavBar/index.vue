@@ -2,7 +2,7 @@
   <div class="nva-bar">
     <div class="nav-toggle" @click="app.toggleSidebar">
       <el-icon>
-        <Fold v-if="!app.isOpen" size="16"/>
+        <Fold v-if="app.isOpen" size="16"/>
         <Expand v-else size="16" />
       </el-icon>
     </div>
