@@ -43,6 +43,7 @@ router.beforeEach(async (to, from, next) => {
     accessRoutes.forEach((route) => {
       router.addRoute(route);
     });
+    console.log('最终的路由', permissionStore.routes)
     // 设置 replace: true, 因此导航将不会留下历史记录
     next({ ...to, replace: true })
 

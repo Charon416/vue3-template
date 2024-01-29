@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@types/path-browserify": "^1.0.2",
     "axios": "^1.6.5",
     "element-plus": "^2.5.2",
     "nprogress": "^0.2.0",
+    "path-browserify": "^1.0.1",
     "pinia": "^2.1.7",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.3.11",

@@ -1,10 +1,10 @@
 <template>
   <div class="menu-wrap">
     <el-menu
-      default-active="2"
+      :default-active="currRoute.path"
       mode="vertical"
       background-color="#304156"
-      text-color="#ffffff"
+      text-color="#bfcbd9"
       active-text-color="#409eff"
       :unique-opened="false"
       :collapse-transition="true"
@@ -12,35 +12,52 @@
       :collapse="app.isOpen"
     >
       <Logo />
-      <el-menu-item index="2">
-        <el-icon><icon-menu /></el-icon>
-        <template #title>Navigator Two</template>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <el-icon><setting /></el-icon>
-        <template #title>Navigator Four</template>
-      </el-menu-item>
-      <!-- <menu-item
-        v-for="route in user.routes"
+      <menu-item
+        v-for="route in permission.routes"
         :key="route.path"
+        :base-path="resolvePath(route.path)"
         :item="route"
-      /> -->
+      />
   </el-menu>
   </div>
 </template>
 <script setup lang="ts">
-import {
-  Menu as IconMenu,
-  Setting,
-} from '@element-plus/icons-vue'
-// import MenuItem from './MenuItem.vue'
+import MenuItem from './MenuItem.vue'
+import { useRoute } from "vue-router";
 import { useAppStore } from '@/store/modules/app';
-// import { useUserStore } from '@/store/modules/user';
-// import { isExternal } from "@/utils/index";
+import { usePermissionStore } from '@/store/modules/permission';
+import { isExternal } from "@/utils/index";
+const currRoute = useRoute();
+import path from "path-browserify";
 import Logo from './Logo.vue'
 const app = useAppStore();
-// const user = useUserStore();
 
+const permission = usePermissionStore();
+
+const props = defineProps({
+  basePath: {
+    type: String,
+    required: false,
+    default: ''
+  },
+});
+/**
+ * 解析路径
+ *
+ * @param routePath 路由路径
+ */
+ function resolvePath(routePath: string) {
+  if (isExternal(routePath)) {
+    return routePath;
+  }
+  if (isExternal(props.basePath)) {
+    return props.basePath;
+  }
+
+  // 完整路径 = 父级路径(/level/level_3) + 路由路径
+  const fullPath = path.resolve(props.basePath, routePath); // 相对路径 → 绝对路径
+  return fullPath;
+}
 </script>
 
 <style lang="scss" scoped>
