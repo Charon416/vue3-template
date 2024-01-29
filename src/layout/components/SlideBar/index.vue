@@ -1,25 +1,23 @@
 <template>
-  <div class="menu-wrap">
-    <el-menu
-      :default-active="currRoute.path"
-      mode="vertical"
-      background-color="#304156"
-      text-color="#bfcbd9"
-      active-text-color="#409eff"
-      :unique-opened="false"
-      :collapse-transition="true"
-      class="slider-menu"
-      :collapse="app.isOpen"
-    >
-      <Logo />
-      <menu-item
-        v-for="route in permission.routes"
-        :key="route.path"
-        :base-path="resolvePath(route.path)"
-        :item="route"
-      />
+  <el-menu
+    :default-active="currRoute.path"
+    mode="vertical"
+    background-color="#304156"
+    text-color="#bfcbd9"
+    active-text-color="#409eff"
+    :unique-opened="false"
+    :collapse-transition="true"
+    class="slider-menu"
+    :collapse="app.isOpen"
+  >
+    <Logo />
+    <menu-item
+      v-for="route in permission.routes"
+      :key="route.path"
+      :base-path="resolvePath(route.path)"
+      :item="route"
+    />
   </el-menu>
-  </div>
 </template>
 <script setup lang="ts">
 import MenuItem from './MenuItem.vue'
@@ -63,5 +61,8 @@ const props = defineProps({
 <style lang="scss" scoped>
 .slider-menu {
   height: 100%;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 210px;
 }
 </style>

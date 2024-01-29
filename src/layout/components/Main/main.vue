@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <section class="app-main">
     <router-view>
       <template #default="{ Component, route }">
         <transition name="fade-slide" mode="out-in">
@@ -9,12 +9,20 @@
         </transition>
       </template>
     </router-view>
-  </div>
+  </section>
 </template>
 <script setup lang="ts">
 
 </script>
 
 <style lang="scss" scoped>
+.app-main {
+  position: relative;
+  width: 100%;
 
+  /* 50= navbar  50  */
+  min-height: calc(100vh - 50px);
+  overflow: hidden;
+  background-color: var(--el-bg-color-page);
+}
 </style>
