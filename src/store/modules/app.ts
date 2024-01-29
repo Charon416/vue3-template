@@ -1,18 +1,17 @@
 import { defineStore } from "pinia";
 import { store } from "@/store";
+import { ref } from 'vue';
 
-interface IAppState {
-  isOpen: boolean; // 侧边栏打开关闭
-}
-
-export const useAppStore = defineStore('app', {
-  state: (): IAppState => ({
-    isOpen: false
-  }),
-  actions: {
-    toggleSidebar() {
-      this.isOpen = !this.isOpen
-    }
+export const useAppStore = defineStore('app', () => {
+  /* 侧边栏状态 */
+  const isOpen = ref<boolean>(false);
+  /* 切换侧边栏状态 */
+  const toggleSidebar = () => {
+    isOpen.value = !isOpen.value
+  }
+  return {
+    isOpen,
+    toggleSidebar
   }
 })
 // 非setup
