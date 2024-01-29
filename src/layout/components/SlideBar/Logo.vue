@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
     <div class="logo-icon">
-      <svg-icon name="vue" size="20" />
+      <svg-icon name="vite" size="20" />
     </div>
     <div class="logo-title" v-if="!app.isOpen">
       vue3-template
