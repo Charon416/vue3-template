@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { store } from "@/store";
-import { ref } from 'vue';
+import { ref } from "vue";
 
 export const useAppStore = defineStore('app', () => {
   /* 侧边栏状态 */

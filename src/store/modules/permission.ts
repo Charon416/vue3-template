@@ -1,6 +1,13 @@
-import { RouteRecordRaw } from "vue-router";
+import { defineStore } from "pinia";
+import { store } from "@/store";
+import { ref } from 'vue';
+import { type RouteRecordRaw } from "vue-router";
+import { getRoutes } from '@/api/menu';
+import { constantRoutes } from "@/router";
 const Layout = () => import("@/layout/index.vue");
 const modules = import.meta.glob("../../views/**/**.vue");
+
+
 /**
  * Use meta.role to determine if the current user has permission
  *
@@ -8,20 +15,18 @@ const modules = import.meta.glob("../../views/**/**.vue");
  * @param route 路由
  * @returns
  */
-function hasPermission(roles: string[], route: RouteRecordRaw) {
+const hasPermission = (roles: string[], route: any) => {
   if (route.meta && route.meta.roles) {
     // 角色【超级管理员】拥有所有权限，忽略校验
     if (roles.includes("ROOT")) {
       return true;
     }
-    return roles.some((role) => {
-      if (route.meta?.roles) {
-        return route.meta.roles.includes(role);
-      }
-    });
+    const routeRoles = route.meta?.roles
+    return routeRoles ? roles.some((role) => routeRoles.includes(role)) : true
   }
   return false;
-}
+};
+
 /**
  * 递归过滤有权限的异步(动态)路由
  *
@@ -29,7 +34,7 @@ function hasPermission(roles: string[], route: RouteRecordRaw) {
  * @param roles 用户角色集合
  * @returns 返回用户有权限的异步(动态)路由
  */
-export function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
+const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
   const asyncRoutes: RouteRecordRaw[] = [];
 
   routes.forEach((route) => {
@@ -59,4 +64,26 @@ export function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
   });
 
   return asyncRoutes;
+};
+
+export const usePermissionStore = defineStore('permission', () => {
+  const routes = ref<RouteRecordRaw[]>([]);
+  // 生成动态路由
+  const generateRoutes = async (roles: string[]) => {
+    // 接口获取所有路由
+    const asyncRoutes: any  = await getRoutes();
+    const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
+    // 拼接本地路由和过滤后的路由
+    routes.value = constantRoutes.concat(accessedRoutes);
+    return accessedRoutes
+  }
+
+  return {
+    routes,
+    generateRoutes
+  }
+})
+// 非setup
+export function usePermissionStoreHook() {
+  return usePermissionStore(store);
 }

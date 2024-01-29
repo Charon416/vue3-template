@@ -28,7 +28,6 @@
   import router from "@/router";
   import { getAuthCaptcha } from '@/api/auth';
   import { useUserStore } from '@/store/modules/user';
-  import { LocationQuery, LocationQueryValue, useRoute } from "vue-router";
 
   let captchaBase64Image = ref(); // 验证码图片Base64字符串
   const loginData = reactive({
@@ -42,29 +41,20 @@
     const { captchaKey, captchaBase64 } = await getAuthCaptcha();
     loginData.captchaKey = captchaKey
     captchaBase64Image.value = captchaBase64;
+    console.log(captchaBase64);
   }
   onMounted(() => {
     getCaptcha()
   })
   // 点击登录
-  const route = useRoute();
   const auth = useUserStore();
   const handleLogin = async () => {
-    auth.login(loginData).then(() => {
-      const query: LocationQuery = route.query;
-      const redirect = (query.redirect as LocationQueryValue) ?? "/";
-
-      const otherQueryParams = Object.keys(query).reduce(
-        (acc: any, cur: string) => {
-          if (cur !== "redirect") {
-            acc[cur] = query[cur];
-          }
-          return acc;
-        },
-        {}
-      );
-
-      router.push({ path: redirect, query: otherQueryParams });
+    auth.login(loginData)
+    .then(() => {
+      router.push({ path: '/' });
+    })
+    .catch(() => {
+      getCaptcha()
     })
   }
 </script>
