@@ -28,7 +28,7 @@ const app = useAppStore();
     animation: show 0.2s linear !important;
   }
   .sider-bar-fold {
-    width: 54px;
+    width: 63px;
     animation: hide 0.2s linear !important;
   }
   @keyframes hide {
@@ -36,12 +36,12 @@ const app = useAppStore();
       width: 210px;
     }
     to {
-      width: 54px;
+      width: 63px;
     }
   }
   @keyframes show {
     from {
-      width: 54px;
+      width: 63px;
     }
     to {
       width: 210px;

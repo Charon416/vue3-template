@@ -59,4 +59,12 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+/* 隐藏文字 */
+.el-menu--collapse :deep(span) {
+  display: none;
+}
+/* 隐藏 > */
+.el-menu--collapse :deep(.el-sub-menu__icon-arrow)  {
+  display: none;
+}
 </style>
