@@ -21,7 +21,7 @@
   width: 100%;
 
   /* 50= navbar  50  */
-  min-height: calc(100vh - 50px);
+  height: calc(100% - 80px);
   overflow: hidden;
   background-color: var(--el-bg-color-page);
 }
