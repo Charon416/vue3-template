@@ -6,7 +6,7 @@
     text-color="#bfcbd9"
     active-text-color="#409eff"
     :unique-opened="false"
-    :collapse-transition="true"
+    :collapse-transition="false"
     class="slider-menu"
     :collapse="!app.isOpen"
   >

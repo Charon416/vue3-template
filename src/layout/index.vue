@@ -25,9 +25,27 @@ const app = useAppStore();
   display: flex;
   .sider-bar {
     width: 210px;
+    animation: show 0.2s linear !important;
   }
-  .fold-sider-bar {
+  .sider-bar-fold {
     width: 54px;
+    animation: hide 0.2s linear !important;
+  }
+  @keyframes hide {
+    from {
+      width: 210px;
+    }
+    to {
+      width: 54px;
+    }
+  }
+  @keyframes show {
+    from {
+      width: 54px;
+    }
+    to {
+      width: 210px;
+    }
   }
   .main-layout {
     flex: 1;
