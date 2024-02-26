@@ -54,5 +54,3 @@ const handleLogin = async () => {
     });
 };
 </script>
-
-<style lang="scss" scoped></style>

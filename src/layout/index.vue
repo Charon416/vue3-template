@@ -20,33 +20,40 @@ const app = useAppStore();
 
 <style lang="scss" scoped>
 .layout {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
+
   .sider-bar {
     width: 210px;
     animation: show 0.2s linear !important;
   }
+
   .sider-bar-fold {
     width: 63px;
     animation: hide 0.2s linear !important;
   }
+
   @keyframes hide {
     from {
       width: 210px;
     }
+
     to {
       width: 63px;
     }
   }
+
   @keyframes show {
     from {
       width: 63px;
     }
+
     to {
       width: 210px;
     }
   }
+
   .main-layout {
     flex: 1;
     background-color: #f2f3f5;

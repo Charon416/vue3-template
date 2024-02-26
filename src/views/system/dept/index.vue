@@ -5,4 +5,8 @@
 </template>
 <script setup lang="ts"></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.system-dept {
+  font-size: 24px;
+}
+</style>

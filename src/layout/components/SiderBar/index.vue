@@ -63,6 +63,7 @@ function resolvePath(routePath: string) {
 .el-menu--collapse :deep(span) {
   display: none;
 }
+
 /* 隐藏 > */
 .el-menu--collapse :deep(.el-sub-menu__icon-arrow) {
   display: none;

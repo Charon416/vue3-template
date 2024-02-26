@@ -25,5 +25,3 @@ import NavRight from "./NavRight.vue";
 
 const app = useAppStore();
 </script>
-
-<style lang="scss" scoped></style>

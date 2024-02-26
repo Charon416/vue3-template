@@ -112,5 +112,3 @@ const resolvePath = (routePath: string) => {
   return fullPath;
 };
 </script>
-
-<style lang="scss" scoped></style>
