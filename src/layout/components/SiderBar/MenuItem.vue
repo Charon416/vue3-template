@@ -1,28 +1,23 @@
 <template>
   <div v-if="!item.meta || !item.meta.hidden">
     <!-- 没有自路由 -->
-    <template v-if="hasOneShowingChild(item.children, item as RouteRecordRaw) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-    !item.meta?.alwaysShow">
+    <template
+      v-if="
+        hasOneShowingChild(item.children, item as RouteRecordRaw) &&
+        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+        !item.meta?.alwaysShow
+      "
+    >
       <menu-item-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item
-          :index="resolvePath(onlyOneChild.path)"
-          :class="{ 'submenu-title-noDropdown': !isNest }"
-        >
-          <item
-            :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
-            :title="onlyOneChild.meta.title"
-          />
+        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{ 'submenu-title-noDropdown': !isNest }">
+          <item :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="onlyOneChild.meta.title" />
         </el-menu-item>
       </menu-item-link>
     </template>
     <!-- 有子路由  -->
     <el-sub-menu v-else :index="resolvePath(item.path)" teleported>
       <template #title>
-        <item
-          v-if="item.meta"
-          :icon="item.meta && item.meta.icon"
-          :title="item.meta.title"
-        />
+        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
 
       <menu-item
@@ -39,7 +34,7 @@
 import { RouteRecordRaw } from "vue-router";
 import { isExternal } from "@/utils/index";
 import MenuItemLink from "./MenuItemLink.vue";
-import Item from './Item.vue';
+import Item from "./Item.vue";
 import path from "path-browserify";
 import { ref } from "vue";
 // 传进来数据
@@ -50,10 +45,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-    /**
+  /**
    * 父层级完整路由路径(eg:/system)
    */
-   basePath: {
+  basePath: {
     type: String,
     required: true,
   },
@@ -73,10 +68,7 @@ const onlyOneChild = ref(); // 临时变量，唯一子路由
  * @param children 子路由数组
  * @param parent 当前路由
  */
- const hasOneShowingChild = (
-  children: RouteRecordRaw[] = [],
-  parent: RouteRecordRaw
- ) => {
+const hasOneShowingChild = (children: RouteRecordRaw[] = [], parent: RouteRecordRaw) => {
   // 子路由集合
   const showingChildren = children.filter((route: RouteRecordRaw) => {
     if (route.meta?.hidden) {
@@ -101,13 +93,13 @@ const onlyOneChild = ref(); // 临时变量，唯一子路由
     return true;
   }
   return false;
-}
+};
 /**
  *  解析路由路径(相对路径 → 绝对路径)
  *
  * @param routePath 路由路径
  */
- const resolvePath = (routePath: string) => {
+const resolvePath = (routePath: string) => {
   if (isExternal(routePath)) {
     return routePath;
   }
@@ -118,9 +110,7 @@ const onlyOneChild = ref(); // 临时变量，唯一子路由
   // 完整路径 = 父级路径(/level/level_3) + 路由路径
   const fullPath = path.resolve(props.basePath, routePath); // 相对路径 → 绝对路径
   return fullPath;
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

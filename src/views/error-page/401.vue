@@ -11,8 +11,7 @@ defineComponent({
 const state = reactive({
   // errGif: new URL(`../../assets/images/401.gif`, import.meta.url).href,
 
-  ewizardClap:
-    "https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646",
+  ewizardClap: "https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646",
   dialogVisible: false,
 });
 
@@ -27,9 +26,7 @@ function back() {
 
 <template>
   <div class="errPage-container">
-    <el-button icon="el-icon-arrow-left" class="pan-back-btn" @click="back">
-      返回
-    </el-button>
+    <el-button icon="el-icon-arrow-left" class="pan-back-btn" @click="back"> 返回 </el-button>
     <el-row>
       <el-col :span="12">
         <h1 class="text-jumbo text-ginormous">Oops!</h1>

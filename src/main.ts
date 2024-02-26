@@ -1,25 +1,24 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
-import { setupAssets, setupCustomComponents } from '@/plugins';
-import { setupStore } from './store'
-import router from './router'
+import { setupAssets, setupCustomComponents } from "@/plugins";
+import { setupStore } from "./store";
+import router from "./router";
 import "@/permission";
 
 function setupPlugins() {
   // 引入所有样式
-  setupAssets()
+  setupAssets();
   // 注册全局自定义组件
-  const app = createApp(App)
-  setupCustomComponents(app)
+  const app = createApp(App);
+  setupCustomComponents(app);
 
   // 挂载pinia
-  setupStore(app)
+  setupStore(app);
   // 挂载路由
-  app.use(router)
+  app.use(router);
   // 挂载
-  app.mount('#app')
+  app.mount("#app");
 }
 // 执行初始化操作
 setupPlugins();
-

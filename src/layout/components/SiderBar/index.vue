@@ -20,14 +20,14 @@
   </el-menu>
 </template>
 <script setup lang="ts">
-import MenuItem from './MenuItem.vue'
+import MenuItem from "./MenuItem.vue";
 import { useRoute } from "vue-router";
-import { useAppStore } from '@/store/modules/app';
-import { usePermissionStore } from '@/store/modules/permission';
+import { useAppStore } from "@/store/modules/app";
+import { usePermissionStore } from "@/store/modules/permission";
 import { isExternal } from "@/utils/index";
 const currRoute = useRoute();
 import path from "path-browserify";
-import Logo from './Logo.vue'
+import Logo from "./Logo.vue";
 const app = useAppStore();
 
 const permission = usePermissionStore();
@@ -36,7 +36,7 @@ const props = defineProps({
   basePath: {
     type: String,
     required: false,
-    default: ''
+    default: "",
   },
 });
 /**
@@ -44,7 +44,7 @@ const props = defineProps({
  *
  * @param routePath 路由路径
  */
- function resolvePath(routePath: string) {
+function resolvePath(routePath: string) {
   if (isExternal(routePath)) {
     return routePath;
   }
@@ -64,7 +64,7 @@ const props = defineProps({
   display: none;
 }
 /* 隐藏 > */
-.el-menu--collapse :deep(.el-sub-menu__icon-arrow)  {
+.el-menu--collapse :deep(.el-sub-menu__icon-arrow) {
   display: none;
 }
 </style>

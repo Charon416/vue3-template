@@ -20,8 +20,8 @@ export interface IResGetMenus {
 }
 
 /**
-* 菜单类型
-*/
+ * 菜单类型
+ */
 export enum Type {
   Button = "BUTTON",
   Catalog = "CATALOG",
@@ -41,8 +41,8 @@ export interface IRoute {
 }
 
 /**
-* Meta，路由属性类型
-*/
+ * Meta，路由属性类型
+ */
 export interface IMeta {
   hidden?: boolean; // 是否隐藏
   icon?: string; // ICON

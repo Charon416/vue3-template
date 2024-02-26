@@ -3,9 +3,7 @@
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path">
         <span
-          v-if="
-            item.redirect === 'noredirect' || index === breadcrumbs.length - 1
-          "
+          v-if="item.redirect === 'noredirect' || index === breadcrumbs.length - 1"
           class="text-[var(--el-disabled-text-color)]"
           >{{ item.meta.title }}</span
         >
@@ -33,14 +31,10 @@ const pathCompile = (path: string) => {
 const breadcrumbs = ref([] as Array<RouteLocationMatched>);
 
 function getBreadcrumb() {
-  let matched = currentRoute.matched.filter(
-    (item) => item.meta && item.meta.title
-  );
+  let matched = currentRoute.matched.filter((item) => item.meta && item.meta.title);
   const first = matched[0];
   if (!isDashboard(first)) {
-    matched = [
-      { path: "/dashboard", meta: { title: "首页" } } as any,
-    ].concat(matched);
+    matched = [{ path: "/dashboard", meta: { title: "首页" } } as any].concat(matched);
   }
   breadcrumbs.value = matched.filter((item) => {
     return item.meta && item.meta.title && item.meta.breadcrumb !== false;
@@ -52,10 +46,7 @@ function isDashboard(route: RouteLocationMatched) {
   if (!name) {
     return false;
   }
-  return (
-    name.toString().trim().toLocaleLowerCase() ===
-    "Dashboard".toLocaleLowerCase()
-  );
+  return name.toString().trim().toLocaleLowerCase() === "Dashboard".toLocaleLowerCase();
 }
 
 function handleLink(item: any) {

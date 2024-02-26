@@ -19,9 +19,7 @@
         <!-- <a target="_blank" href="https://juejin.cn/post/7228990409909108793">
           <el-dropdown-item>{{ $t("navbar.document") }}</el-dropdown-item>
         </a> -->
-        <el-dropdown-item divided @click="logout">
-          注销
-        </el-dropdown-item>
+        <el-dropdown-item divided @click="logout"> 注销 </el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
@@ -29,8 +27,8 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { useUserStore } from "@/store/modules/user";
-import { removeToken } from '@/utils/local-storage'
-import { CaretBottom } from '@element-plus/icons-vue'
+import { removeToken } from "@/utils/local-storage";
+import { CaretBottom } from "@element-plus/icons-vue";
 
 const userStore = useUserStore();
 
@@ -43,7 +41,7 @@ const router = useRouter();
 const logout = () => {
   removeToken();
   router.push(`/login?redirect=${route.fullPath}`);
-}
+};
 </script>
 <style lang="scss" scoped>
 .setting-container {

@@ -1,6 +1,6 @@
 export default {
   plugins: {
-    '@unocss/postcss': {},
+    "@unocss/postcss": {},
     autoprefixer: {},
   },
-}
+};

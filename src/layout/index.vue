@@ -10,10 +10,10 @@
 </template>
 <script setup lang="ts">
 import Sidebar from "./components/SiderBar/index.vue";
-import NavBar from './components/NavBar/index.vue';
-import TagsView from './components/TagsView/index.vue';
-import Main from './components/Main/main.vue'
-import { useAppStore } from '@/store/modules/app';
+import NavBar from "./components/NavBar/index.vue";
+import TagsView from "./components/TagsView/index.vue";
+import Main from "./components/Main/main.vue";
+import { useAppStore } from "@/store/modules/app";
 
 const app = useAppStore();
 </script>

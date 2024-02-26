@@ -1,12 +1,6 @@
 <template>
-  <div>
-    icons
-  </div>
+  <div>icons</div>
 </template>
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

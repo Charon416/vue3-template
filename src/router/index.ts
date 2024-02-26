@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 export const Layout = () => import("@/layout/index.vue");
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -47,14 +47,14 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: { hidden: true },
       },
     ],
-  }
-]
+  },
+];
 
 // 创建路由
 const router = createRouter({
   history: createWebHashHistory(),
   routes: constantRoutes as RouteRecordRaw[],
   scrollBehavior: () => ({ left: 0, top: 0 }),
-})
+});
 
 export default router;

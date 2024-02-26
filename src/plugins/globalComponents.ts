@@ -1,6 +1,6 @@
-import { App } from 'vue';
+import { App } from "vue";
 
-import { SvgIcon } from '@/components/common/svg-icon';
+import { SvgIcon } from "@/components/common/svg-icon";
 /**
  * 全局注册自定义组件
  * @param app

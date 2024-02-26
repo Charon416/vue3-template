@@ -1,2 +1,2 @@
-export { setupAssets } from './assets'
-export { setupCustomComponents } from './globalComponents'
+export { setupAssets } from "./assets";
+export { setupCustomComponents } from "./globalComponents";

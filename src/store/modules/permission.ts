@@ -1,12 +1,11 @@
 import { defineStore } from "pinia";
 import { store } from "@/store";
-import { ref } from 'vue';
+import { ref } from "vue";
 import { type RouteRecordRaw } from "vue-router";
-import { getRoutes } from '@/api/menu';
+import { getRoutes } from "@/api/menu";
 import { constantRoutes } from "@/router";
 const Layout = () => import("@/layout/index.vue");
 const modules = import.meta.glob("../../views/**/**.vue");
-
 
 /**
  * Use meta.role to determine if the current user has permission
@@ -21,8 +20,8 @@ const hasPermission = (roles: string[], route: any) => {
     if (roles.includes("ROOT")) {
       return true;
     }
-    const routeRoles = route.meta?.roles
-    return routeRoles ? roles.some((role) => routeRoles.includes(role)) : true
+    const routeRoles = route.meta?.roles;
+    return routeRoles ? roles.some((role) => routeRoles.includes(role)) : true;
   }
   return false;
 };
@@ -66,23 +65,23 @@ const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
   return asyncRoutes;
 };
 
-export const usePermissionStore = defineStore('permission', () => {
+export const usePermissionStore = defineStore("permission", () => {
   const routes = ref<RouteRecordRaw[]>([]);
   // 生成动态路由
   const generateRoutes = async (roles: string[]) => {
     // 接口获取所有路由
-    const asyncRoutes: any  = await getRoutes();
+    const asyncRoutes: any = await getRoutes();
     const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
     // 拼接本地路由和过滤后的路由
     routes.value = constantRoutes.concat(accessedRoutes);
-    return accessedRoutes
-  }
+    return accessedRoutes;
+  };
 
   return {
     routes,
-    generateRoutes
-  }
-})
+    generateRoutes,
+  };
+});
 // 非setup
 export function usePermissionStoreHook() {
   return usePermissionStore(store);

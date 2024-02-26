@@ -3,10 +3,6 @@
     <h2>websocket</h2>
   </div>
 </template>
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
