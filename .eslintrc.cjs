@@ -23,8 +23,9 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "vue"],
   rules: {
+    quotes: ["error", "double"], // 必须用双引号
+    semi: ["error", "always"], // 必须使用分号结尾
     "vue/multi-word-component-names": "off", // 禁用组件名称规则
     "@typescript-eslint/no-explicit-any": "off", // 解除any类型限制
-    "no-undef": "off", // 接触警告'module' is not defined.eslintno-undef
   },
 };

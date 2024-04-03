@@ -12,7 +12,7 @@ module.exports = {
   // 当文件已经被 Prettier 格式化之后，是否会在文件顶部插入一个特殊的 @format 标记，默认false
   insertPragma: false,
   // 在 JSX 中使用单引号替代双引号，默认false
-  jsxSingleQuote: false,
+  jsxSingleQuote: true,
   // 每行最多字符数量，超出换行(默认80)
   printWidth: 120,
   // 超出打印宽度 (always | never | preserve )

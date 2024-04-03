@@ -4,7 +4,7 @@ import { IResGetAuthCaptcha, IPostLogin, IResPostLogin, IResGetMe } from "./type
 // 获取登录验证码
 export function getAuthCaptcha(): Promise<IResGetAuthCaptcha> {
   return request({
-    url: `/auth/captcha`,
+    url: "/auth/captcha",
     method: "get",
   });
 }

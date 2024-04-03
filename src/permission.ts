@@ -12,6 +12,7 @@ NProgress.configure({ showSpinner: false }); // 进度条
 const whiteList = ["/login"];
 
 router.beforeEach(async (to, from, next) => {
+  console.log("from路由", from);
   NProgress.start();
   const userStore = useUserStore();
   const permissionStore = usePermissionStore();
@@ -22,7 +23,7 @@ router.beforeEach(async (to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) {
       next();
     } else {
-      next(`/login`);
+      next("/login");
       NProgress.done();
     }
     return;
@@ -43,13 +44,12 @@ router.beforeEach(async (to, from, next) => {
     accessRoutes.forEach((route) => {
       router.addRoute(route);
     });
-    console.log("最终的路由", permissionStore.routes);
     // 设置 replace: true, 因此导航将不会留下历史记录
     next({ ...to, replace: true });
   } catch (error) {
     // 移除 token 并跳转登录页
     removeToken();
-    next(`/login`);
+    next("/login");
     NProgress.done();
   }
 });
