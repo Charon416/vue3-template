@@ -11,12 +11,14 @@
     :collapse="!app.isOpen"
   >
     <Logo />
-    <menu-item
-      v-for="route in permission.routes"
-      :key="route.path"
-      :base-path="resolvePath(route.path)"
-      :item="route"
-    />
+    <div class="menu-item">
+      <menu-item
+        v-for="route in permission.routes"
+        :key="route.path"
+        :base-path="resolvePath(route.path)"
+        :item="route"
+      />
+    </div>
   </el-menu>
 </template>
 <script setup lang="ts">
@@ -24,12 +26,12 @@ import MenuItem from "./MenuItem.vue";
 import { useRoute } from "vue-router";
 import { useAppStore } from "@/store/modules/app";
 import { usePermissionStore } from "@/store/modules/permission";
-import { isExternal } from "@/utils/index";
-const currRoute = useRoute();
+import { isExternal } from "@/utils";
 import path from "path-browserify";
 import Logo from "./Logo.vue";
-const app = useAppStore();
 
+const currRoute = useRoute();
+const app = useAppStore();
 const permission = usePermissionStore();
 
 const props = defineProps({
@@ -39,6 +41,7 @@ const props = defineProps({
     default: "",
   },
 });
+
 /**
  * 解析路径
  *
@@ -53,8 +56,7 @@ function resolvePath(routePath: string) {
   }
 
   // 完整路径 = 父级路径(/level/level_3) + 路由路径
-  const fullPath = path.resolve(props.basePath, routePath); // 相对路径 → 绝对路径
-  return fullPath;
+  return path.resolve(props.basePath, routePath); // 相对路径 → 绝对路径
 }
 </script>
 
@@ -67,5 +69,24 @@ function resolvePath(routePath: string) {
 /* 隐藏 > */
 .el-menu--collapse :deep(.el-sub-menu__icon-arrow) {
   display: none;
+}
+
+.menu-item {
+  height: calc(100% - 50px);
+  overflow: auto;
+}
+
+/* 自定义滚动条样式 */
+.menu-item::-webkit-scrollbar {
+  width: 4px;
+}
+
+.menu-item::-webkit-scrollbar-thumb {
+  background-color: #304156;
+  border-radius: 2px;
+}
+
+.menu-item::-webkit-scrollbar-track {
+  background-color: #304156;
 }
 </style>

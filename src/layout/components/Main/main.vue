@@ -16,11 +16,11 @@
 <style lang="scss" scoped>
 .app-main {
   position: relative;
-  width: 100%;
 
   /* 50= navbar  50  */
   height: calc(100% - 80px);
-  overflow: hidden;
+  padding: 20px;
+  overflow: auto;
   background-color: var(--el-bg-color-page);
 }
 </style>

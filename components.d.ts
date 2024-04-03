@@ -28,6 +28,8 @@ declare module "vue" {
     ElMenuItemGroup: (typeof import("element-plus/es"))["ElMenuItemGroup"];
     ElRow: (typeof import("element-plus/es"))["ElRow"];
     ElSubMenu: (typeof import("element-plus/es"))["ElSubMenu"];
+    ElTable: (typeof import("element-plus/es"))["ElTable"];
+    ElTableColumn: (typeof import("element-plus/es"))["ElTableColumn"];
     ElTag: (typeof import("element-plus/es"))["ElTag"];
     ElTooltip: (typeof import("element-plus/es"))["ElTooltip"];
     HelloWorld: (typeof import("./src/components/HelloWorld.vue"))["default"];
