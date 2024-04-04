@@ -36,7 +36,6 @@ const getCaptcha = async () => {
   const { captchaKey, captchaBase64 } = await getAuthCaptcha();
   loginData.captchaKey = captchaKey;
   captchaBase64Image.value = captchaBase64;
-  console.log(captchaBase64);
 };
 onMounted(() => {
   getCaptcha();
@@ -47,6 +46,7 @@ const handleLogin = async () => {
   auth
     .login(loginData)
     .then(() => {
+      localStorage.setItem("sidebarStatus", "opened");
       router.push({ path: "/" });
     })
     .catch(() => {
