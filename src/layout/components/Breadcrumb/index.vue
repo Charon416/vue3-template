@@ -78,7 +78,7 @@ onBeforeMount(() => {
 </script>
 
 <style lang="scss" scoped>
-.app-breadcrumb.el-breadcrumb {
+.app-breadcrumb .el-breadcrumb {
   display: inline-block;
   margin-left: 8px;
   font-size: 14px;

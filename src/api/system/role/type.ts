@@ -26,3 +26,13 @@ export interface IResRolePage {
   status?: number; // 角色状态
   updateTime?: Date;
 }
+
+export interface IPutRoles {
+  code: string; // 角色编码
+  dataScope?: number; // 数据权限
+  id?: number; // 角色ID
+  name: string; // 角色名称
+  sort?: number; // 排序
+  status?: number; // 角色状态(1-正常；0-停用)
+  [property: string]: any;
+}
