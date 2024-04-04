@@ -16,9 +16,7 @@
 <style lang="scss" scoped>
 .app-main {
   position: relative;
-
-  /* 50= navbar  50  */
-  height: calc(100% - 80px);
+  height: calc(100vh - $navbar-height - $tags-view-height);
   padding: 20px;
   overflow: auto;
   background-color: var(--el-bg-color-page);

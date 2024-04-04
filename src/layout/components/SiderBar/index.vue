@@ -1,25 +1,27 @@
 <template>
-  <el-menu
-    :default-active="currRoute.path"
-    mode="vertical"
-    background-color="#304156"
-    text-color="#bfcbd9"
-    active-text-color="#409eff"
-    :unique-opened="false"
-    :collapse-transition="false"
-    class="slider-menu"
-    :collapse="!app.isOpen"
-  >
-    <Logo />
-    <div class="menu-item">
-      <menu-item
-        v-for="route in permission.routes"
-        :key="route.path"
-        :base-path="resolvePath(route.path)"
-        :item="route"
-      />
-    </div>
-  </el-menu>
+  <div>
+    <el-menu
+      :default-active="currRoute.path"
+      mode="vertical"
+      background-color="#304156"
+      text-color="#bfcbd9"
+      active-text-color="#409eff"
+      :unique-opened="false"
+      :collapse-transition="false"
+      class="slider-menu"
+      :collapse="!app.isOpen"
+    >
+      <Logo />
+      <el-scrollbar class="menu-item">
+        <menu-item
+          v-for="route in permission.routes"
+          :key="route.path"
+          :base-path="resolvePath(route.path)"
+          :item="route"
+        />
+      </el-scrollbar>
+    </el-menu>
+  </div>
 </template>
 <script setup lang="ts">
 import MenuItem from "./MenuItem.vue";
@@ -71,22 +73,11 @@ function resolvePath(routePath: string) {
   display: none;
 }
 
+.el-menu {
+  border-right: none;
+}
+
 .menu-item {
-  height: calc(100% - 50px);
-  overflow: auto;
-}
-
-/* 自定义滚动条样式 */
-.menu-item::-webkit-scrollbar {
-  width: 4px;
-}
-
-.menu-item::-webkit-scrollbar-thumb {
-  background-color: #304156;
-  border-radius: 2px;
-}
-
-.menu-item::-webkit-scrollbar-track {
-  background-color: #304156;
+  height: calc(100vh - $navbar-height);
 }
 </style>
