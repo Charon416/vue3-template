@@ -7,6 +7,7 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import path from "path";
 import UnoCSS from "unocss/vite";
 import { resolve } from "path";
+
 const CWD = process.cwd();
 
 // https://vitejs.dev/config/
@@ -43,6 +44,18 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         "@": path.resolve("./src"),
+      },
+    },
+    css: {
+      // CSS 预处理器
+      preprocessorOptions: {
+        // 定义全局 SCSS 变量
+        scss: {
+          javascriptEnabled: true,
+          additionalData: `
+          	@use "@/assets/css/variables.scss" as *;
+          `,
+        },
       },
     },
   };

@@ -9,7 +9,7 @@
         <el-button :icon="Refresh" @click="handleRefresh">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-table :data="roleList">
+    <el-table :data="roleList" border style="width: 100%">
       <el-table-column fixed prop="id" label="id" width="100" />
       <el-table-column prop="name" label="角色名称" />
       <el-table-column prop="code" label="角色编码" />
