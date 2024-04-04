@@ -1,7 +1,7 @@
 <template>
-  <div class="layout">
-    <Sidebar :class="[app.isOpen ? 'sider-bar' : 'sider-bar-fold']" />
-    <div class="main-layout">
+  <div class="layout" :class="classObj">
+    <Sidebar class="sidebar-container" />
+    <div class="main-container">
       <NavBar />
       <TagsView />
       <Main />
@@ -9,54 +9,58 @@
   </div>
 </template>
 <script setup lang="ts">
+import { computed } from "vue";
 import Sidebar from "./components/SiderBar/index.vue";
 import NavBar from "./components/NavBar/index.vue";
 import TagsView from "./components/TagsView/index.vue";
 import Main from "./components/Main/main.vue";
 import { useAppStore } from "@/store/modules/app";
 
-const app = useAppStore();
+const appStore = useAppStore();
+const classObj = computed(() => ({
+  hideSidebar: !appStore.isOpen,
+  openSidebar: appStore.isOpen,
+  "layout-left": true,
+}));
 </script>
 
 <style lang="scss" scoped>
 .layout {
-  display: flex;
   width: 100%;
   height: 100%;
+}
 
-  .sider-bar {
-    width: 210px;
-    animation: show 0.2s linear !important;
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  width: $sidebar-width;
+  height: 100%;
+  overflow: hidden;
+  background-color: $menu-background;
+  transition: width 0.28s;
+
+  :deep(.el-menu) {
+    border: none;
+  }
+}
+
+.main-container {
+  position: relative;
+  min-height: 100%;
+  margin-left: $sidebar-width;
+  transition: margin-left 0.28s;
+}
+
+.layout-left.hideSidebar {
+  .sidebar-container {
+    width: $sidebar-width-collapsed !important;
   }
 
-  .sider-bar-fold {
-    width: 63px;
-    animation: hide 0.2s linear !important;
-  }
-
-  @keyframes hide {
-    from {
-      width: 210px;
-    }
-
-    to {
-      width: 63px;
-    }
-  }
-
-  @keyframes show {
-    from {
-      width: 63px;
-    }
-
-    to {
-      width: 210px;
-    }
-  }
-
-  .main-layout {
-    flex: 1;
-    background-color: #f2f3f5;
+  .main-container {
+    margin-left: $sidebar-width-collapsed;
   }
 }
 </style>
